@@ -20,14 +20,17 @@ const work = defineCollection({
       outcome: z.string(), // the one line a recruiter reads
       metric: z.string().optional(), // e.g. "+100% traffic"
       tags: z.array(z.string()).min(1),
-      visual: z
-        .object({
-          type: z.enum(['image', 'gif', 'diagram']),
-          src: image(), // local file in src/assets, optimized by Astro
-          alt: z.string().min(1),
-          capturedOn: z.coerce.date(), // public screenshots are dated
-        })
-        .optional(),
+      highlights: z.array(z.string()).optional(), // short bullets, page by page
+      visuals: z
+        .array(
+          z.object({
+            src: image(), // local file in src/assets, optimized by Astro
+            alt: z.string().min(1),
+            caption: z.string().optional(),
+            capturedOn: z.coerce.date().optional(), // set for screenshots of live sites
+          }),
+        )
+        .default([]),
       links: z
         .object({
           demo: z.url().optional(),

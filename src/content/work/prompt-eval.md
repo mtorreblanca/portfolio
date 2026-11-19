@@ -1,13 +1,17 @@
 ---
-# SOURCE (master resume): "Prompt-evaluation web app for auditing prompts"
-# NEEDED: what it does in one line, stack, your share, demo/repo links
-title: Prompt-evaluation app
+title: PromptDeck, a prompt evaluator
 section: projects
-myShare: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-outcome: A web app for auditing prompts. Lorem ipsum dolor sit amet, consectetur
-tags: [LLM, React]
+myShare: Designed and built solo
+outcome: Write a prompt with {{variables}}, define test cases, and auto-grade every run against a rubric across Claude, GPT and Gemini.
+highlights:
+  - Compare scores across providers and models in a run history
+  - Inspired by learning how prompt evaluation works in Anthropic's Claude API course
+tags: [React, Vite, LLM APIs]
+visuals:
+  - src: ../../assets/work/promptdeck.jpg
+    alt: PromptDeck interface with a prompt template, a grading rubric, a test case and provider and model selectors
 links:
-  demo: https://example.com/lorem-demo
-  repo: https://example.com/lorem-repo
+  demo: https://promptdeck-nine.vercel.app
+  repo: https://github.com/mtorreblanca/Promptdeck
 order: 2
 ---

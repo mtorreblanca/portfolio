@@ -24,13 +24,13 @@ const work = entries.filter((e) => e.data.section === 'work');
 
     <Section id="projects" title="Projects" intro="Personal builds: live demos and code.">
       <div class="grid gap-6 md:grid-cols-2">
-        {projects.map((p) => <WorkCard entry={p} featured />)}
+        {projects.map((p) => <WorkCard entry={p} featured wide={projects.length === 1} />)}
       </div>
     </Section>
 
     <Section id="work" title="Selected work" intro="Production work for clients and employers.">
       <div class="grid gap-6 md:grid-cols-2">
-        {work.map((w) => <WorkCard entry={w} />)}
+        {work.map((w) => <WorkCard entry={w} wide={w.data.visuals.length > 0} />)}
       </div>
     </Section>
 

@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Marcelo Torreblanca',
   shortName: 'Marcelo',
-  role: 'Frontend engineer',
+  role: 'Full‑stack engineer', // non-breaking hyphen: never splits across lines
   /** Hero sentence; `highlight` is underlined in the accent color. */
   headline: 'building React/TypeScript apps, data visualization and LLM-powered UIs.',
   highlight: 'data visualization',
@@ -10,12 +10,11 @@ export const profile = {
   location: 'Based in Mexico, working remotely with U.S. teams',
   /** Used for <meta description> and link previews. */
   description:
-    'Frontend engineer: React/TypeScript, data visualization and LLM-powered UIs. Projects and selected work.',
+    'Full-stack engineer: React/TypeScript, data visualization and LLM-powered UIs. Projects and selected work.',
   links: {
     github: 'https://github.com/mtorreblanca',
     linkedin: 'https://linkedin.com/in/marcelotorreblanca',
     email: 'marchello1212@gmail.com',
-    cv: '/cv.pdf', // NEEDED: drop the PDF in public/cv.pdf (the one sent to this recruiter)
   },
 };
 
@@ -29,7 +28,7 @@ export const education = [
     title: 'AWS Certified AI Practitioner',
     org: 'Amazon Web Services',
     note: 'Issued Sep 2026',
-    url: 'https://example.com/lorem-badge', // NEEDED: Credly badge link
+    url: 'https://www.credly.com/badges/b9a9242f-912c-4bb2-993f-26cdc33bc006',
   },
   {
     title: 'Data Science and AI: From Concept to Application Development',

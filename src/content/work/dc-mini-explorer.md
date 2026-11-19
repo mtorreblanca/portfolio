@@ -9,4 +9,5 @@ links:
   demo: https://example.com/lorem-demo
   repo: https://example.com/lorem-repo
 order: 1
+draft: true # hidden until the project is ready
 ---

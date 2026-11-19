@@ -4,9 +4,9 @@ export const profile = {
   shortName: 'Marcelo',
   role: 'Full‑stack engineer', // non-breaking hyphen: never splits across lines
   /** Hero sentence; `highlight` is underlined in the accent color. */
-  headline: 'building React/TypeScript apps, data visualization and LLM-powered UIs.',
+  headline: 'building React/TypeScript apps, GraphQL APIs, data visualization and LLM-powered UIs.',
   highlight: 'data visualization',
-  stack: ['React', 'TypeScript', 'D3', 'LLM UIs'],
+  stack: ['React', 'TypeScript', 'Node.js', 'GraphQL', 'Python', 'D3', 'LLM UIs'],
   location: 'Based in Mexico, working remotely with U.S. teams',
   /** Used for <meta description> and link previews. */
   description:

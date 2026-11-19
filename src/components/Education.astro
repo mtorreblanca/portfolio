@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { education } from '../data/profile';
+---
+
+<ul class="divide-y divide-line border-y border-line">
+  {education.map((e) => (
+    <li class="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+      <div>
+        <p class="font-medium">{e.title}</p>
+        <p class="text-sm text-muted">{e.org}</p>
+      </div>
+      <div class="flex shrink-0 items-center gap-4 text-sm text-muted">
+        {e.note && <span>{e.note}</span>}
+        {e.url && (
+          <a
+            href={e.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 font-medium text-fg underline decoration-line underline-offset-4 hover:decoration-accent"
+          >
+            Verify <Icon name="arrow-up-right" class="size-3.5" />
+            <span class="sr-only">{e.title} credential (opens in a new tab)</span>
+          </a>
+        )}
+      </div>
+    </li>
+  ))}
+</ul>

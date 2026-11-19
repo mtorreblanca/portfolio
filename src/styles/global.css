@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* `dark:` utilities follow the data-theme attribute set in BaseLayout. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Theme tokens. Components use `bg-bg`, `text-fg`, `text-muted`, `border-line`, `text-accent`
+ * and never hard-code colors, so switching the theme is a single attribute change.
+ */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --fg: #141416;
+  --muted: #5b5f66;
+  --line: #e4e4e7;
+  --accent: #a16207; /* amber-700: 5.4:1 on --bg */
+  --accent-soft: #fef3c7;
+}
+
+[data-theme="dark"] {
+  --bg: #111214;
+  --surface: #18191c;
+  --fg: #f4f4f5;
+  --muted: #a1a1aa;
+  --line: #2a2b2f;
+  --accent: #e0b04a;
+  --accent-soft: #2b2416;
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import { profile } from '../data/profile';
+
+const [before, after] = profile.headline.split(profile.highlight);
+---
+
+<section id="top" class="mx-auto max-w-5xl px-5 pt-16 pb-20 sm:px-8 sm:pt-28 sm:pb-28">
+  <p
+    class="inline-block rounded-full border border-line px-3 py-1 text-xs font-medium tracking-widest text-accent uppercase"
+  >
+    {profile.stack.join(' · ')}
+  </p>
+
+  <h1 class="mt-6 text-4xl leading-[1.1] font-semibold tracking-tight text-balance sm:text-6xl">
+    {`Hi, I'm ${profile.shortName}. ${profile.role} ${before}`}<span class="underline decoration-accent decoration-2 underline-offset-[0.2em]"
+      >{profile.highlight}</span
+    >{after}
+  </h1>
+
+  <p class="mt-6 flex items-center gap-2 text-muted">
+    <Icon name="pin" />
+    {profile.location}
+  </p>
+
+  <div class="mt-10 flex flex-wrap gap-3">
+    <a
+      href={`mailto:${profile.links.email}`}
+      class="inline-flex items-center gap-2 rounded-full bg-fg px-5 py-3 text-sm font-medium text-bg transition-opacity hover:opacity-85"
+    >
+      <Icon name="mail" /> Email me
+    </a>
+    <a
+      href={profile.links.cv}
+      class="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium transition-colors hover:border-fg"
+    >
+      <Icon name="file" /> Download CV
+    </a>
+  </div>
+</section>

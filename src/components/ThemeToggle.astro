@@ -1,0 +1,30 @@
+---
+/**
+ * Light/dark switch. Plain <script> instead of React: it's 6 lines, no island needed.
+ * The initial theme (saved choice or OS setting) is applied in BaseLayout before paint.
+ */
+import Icon from './Icon.astro';
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="grid size-10 place-items-center rounded-full border border-line text-muted transition-colors hover:text-fg focus-visible:outline-2 focus-visible:outline-accent"
+  aria-label="Switch to light theme"
+>
+  <Icon name="sun" class="hidden size-4 dark:block" />
+  <Icon name="moon" class="block size-4 dark:hidden" />
+</button>
+
+<script>
+  const btn = document.getElementById('theme-toggle')!;
+  const root = document.documentElement;
+  const label = () =>
+    btn.setAttribute('aria-label', `Switch to ${root.dataset.theme === 'dark' ? 'light' : 'dark'} theme`);
+  label();
+  btn.addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', root.dataset.theme);
+    label();
+  });
+</script>

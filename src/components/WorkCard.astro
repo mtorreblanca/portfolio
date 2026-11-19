@@ -1,0 +1,82 @@
+---
+/**
+ * One card for both sections. `featured` (personal projects) gets more room for the visual.
+ * Order of reading: company → title → outcome → metric → my part → tags → links.
+ */
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+import Tags from './Tags.astro';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  featured?: boolean;
+}
+const { entry, featured = false } = Astro.props;
+const { title, company, myShare, outcome, metric, tags, visual, links } = entry.data;
+
+const linkList = [
+  { label: 'Live demo', href: links.demo },
+  { label: 'Code', href: links.repo },
+  { label: 'Live site', href: links.live },
+].filter((l): l is { label: string; href: string } => Boolean(l.href));
+
+const captured = visual?.capturedOn.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+---
+
+<article
+  class="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-muted/50"
+>
+  {visual && (
+    <figure class="border-b border-line">
+      <Image
+        src={visual.src}
+        alt={visual.alt}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 768px) 480px, 100vw"
+        class={`w-full object-cover object-top ${featured ? 'aspect-video' : 'aspect-[16/10]'}`}
+      />
+      {visual.type !== 'diagram' && (
+        <figcaption class="px-5 pt-2 text-xs text-muted">Captured {captured}</figcaption>
+      )}
+    </figure>
+  )}
+
+  <div class={`flex flex-1 flex-col gap-4 ${featured ? 'p-6 sm:p-8' : 'p-5 sm:p-6'}`}>
+    <header>
+      {company && <p class="text-xs font-medium tracking-wider text-muted uppercase">{company}</p>}
+      <h3 class={`mt-1 font-semibold tracking-tight ${featured ? 'text-2xl' : 'text-xl'}`}>{title}</h3>
+    </header>
+
+    <p class="text-pretty">{outcome}</p>
+
+    {metric && (
+      <p class="border-l-2 border-accent pl-3 text-sm font-medium">{metric}</p>
+    )}
+
+    <p class="text-sm text-muted">
+      <span class="font-medium text-fg">My part: </span>{myShare}
+    </p>
+
+    <div class="mt-auto flex flex-col gap-4 pt-2">
+      <Tags tags={tags} />
+      {linkList.length > 0 && (
+        <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+          {linkList.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
+              >
+                {l.label} <Icon name="arrow-up-right" class="size-3.5" />
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</article>

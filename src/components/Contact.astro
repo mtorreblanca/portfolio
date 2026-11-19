@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { profile } from '../data/profile';
+
+const social = [
+  { label: 'GitHub', href: profile.links.github },
+  { label: 'LinkedIn', href: profile.links.linkedin },
+];
+---
+
+<footer id="contact" class="scroll-mt-20 border-t border-line">
+  <div class="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-24">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-5xl">Let's talk.</h2>
+    <a
+      href={`mailto:${profile.links.email}`}
+      class="mt-4 inline-block text-lg break-all text-muted underline decoration-line underline-offset-4 transition-colors hover:text-fg hover:decoration-accent sm:text-xl"
+    >
+      {profile.links.email}
+    </a>
+
+    <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
+      {social.map((s) => (
+        <li>
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 hover:text-accent"
+          >
+            {s.label} <Icon name="arrow-up-right" class="size-3.5" />
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href={profile.links.cv} class="inline-flex items-center gap-1 hover:text-accent">
+          CV (PDF) <Icon name="file" class="size-3.5" />
+        </a>
+      </li>
+    </ul>
+
+    <p class="mt-16 text-xs text-muted">© {new Date().getFullYear()} {profile.name}</p>
+  </div>
+</footer>

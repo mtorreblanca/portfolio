@@ -1,0 +1,9 @@
+---
+const { tags } = Astro.props as { tags: string[] };
+---
+
+<ul class="flex flex-wrap gap-2" aria-label="Technologies">
+  {tags.map((t) => (
+    <li class="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-accent">{t}</li>
+  ))}
+</ul>

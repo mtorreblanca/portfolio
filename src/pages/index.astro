@@ -1,0 +1,42 @@
+---
+/** The one page: Hero → Projects → Selected work → Education → Contact. */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Education from '../components/Education.astro';
+import Contact from '../components/Contact.astro';
+import { profile } from '../data/profile';
+
+const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const projects = entries.filter((e) => e.data.section === 'projects');
+const work = entries.filter((e) => e.data.section === 'work');
+---
+
+<BaseLayout title={`${profile.name} · ${profile.role}`} description={profile.description}>
+  <Nav />
+  <main id="main">
+    <Hero />
+
+    <Section id="projects" title="Projects" intro="Personal builds: live demos and code.">
+      <div class="grid gap-6 md:grid-cols-2">
+        {projects.map((p) => <WorkCard entry={p} featured />)}
+      </div>
+    </Section>
+
+    <Section id="work" title="Selected work" intro="Production work for clients and employers.">
+      <div class="grid gap-6 md:grid-cols-2">
+        {work.map((w) => <WorkCard entry={w} />)}
+      </div>
+    </Section>
+
+    <Section id="education" title="Education & certifications">
+      <Education />
+    </Section>
+  </main>
+  <Contact />
+</BaseLayout>
